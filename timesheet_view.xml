@@ -26,15 +26,16 @@
      		<field name="model">account.analytic.line</field>
      		<field name="inherit_id" ref="account.view_account_analytic_line_tree"/>
      		<field name="arch" type="xml">
-				<!-- 
+				
  				<field name="name" position="after">
- 					<field name="workcenter" string="Work type"/>
+ 					<field name="task" />
 				</field>
-					-->
 					
+					<!--
  					<xpath expr="//field[@name='timesheet_ids']/tree/field[@name='journal_id']" position="after">
  						<field name="task" />
 					</xpath>
+					-->
      		</field>
  		</record>
 

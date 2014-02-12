@@ -17,17 +17,16 @@ class timesheet_task(osv.osv):
 timesheet_task()
 
 
-'''
 class analytic_line(osv.osv):
     _name="account.analytic.line"
     _inherit="account.analytic.line"
     
     _columns={
-        'workcenter': fields.many2one('mrp.routing.workcenter', 'Work type'),
+        'task': fields.many2one('project.task', 'Project Task'),
     }
     
 analytic_line()
-'''
+
 '''
 class analytic_timesheet_task(osv.osv):
     _name="hr.analytic.timesheet"
