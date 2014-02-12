@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+	   <!-- Extends sale.order to include quotation valid date in states draft and sent -->
+	   <record model="ir.ui.view" id="hr_timesheet_sheet_view_extension">
+    		<field name="name">hr_timesheet_sheet.inherit</field>
+    		<field name="model">hr_timesheet_sheet.sheet</field>
+    		<field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+    		<field name="arch" type="xml">
+				<data>
+					<xpath expr="//field[@name='timesheet_ids']/form/field[@name='account_id']" position="after">
+						<field name="task" />
+					</xpath>
+					
+					<xpath expr="//field[@name='timesheet_ids']/tree/field[@name='account_id']" position="after">
+						<field name="task"/>
+					</xpath>
+				</data>
+    		</field>
+		</record>
+	 
+	   <!-- 
+ 	   <record model="ir.ui.view" id="analytic_line_view_extension">
+     		<field name="name">account.analytic.line.inherit</field>
+     		<field name="model">account.analytic.line</field>
+     		<field name="inherit_id" ref="account.view_account_analytic_line_tree"/>
+     		<field name="arch" type="xml">
+ 				<field name="name" position="after">
+ 					<field name="workcenter" string="Work type"/>
+				</field>
+
+ 					<xpath expr="//field[@name='timesheet_ids']/tree/field[@name='journal_id']" position="after">
+ 						<field name="workcenter" string="Work type"/>
+
+     		</field>
+ 		</record>
+		-->
+	</data>
+</openerp>
