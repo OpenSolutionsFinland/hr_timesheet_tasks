@@ -22,7 +22,7 @@ class analytic_timesheet_task(osv.osv):
         return res
         
     _columns={
-        'task_work_line_id': fields.integer('Task work line in the selected task')
+        'task_work_line_id': fields.integer('Task work line in the selected task'),
         'project_id': fields.many2one('project.project', 'Project'),
         'task': fields.many2one('project.task', 'Project Task'),
     }
