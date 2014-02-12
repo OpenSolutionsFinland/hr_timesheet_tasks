@@ -29,7 +29,7 @@ class analytic_timesheet_task(osv.osv):
             date = vals['date'] if hasattr(vals, 'date') else line.date
             unit_amount = vals['unit_amount'] if hasattr(vals, 'unit_amount') else line.unit_amount
             project = vals['project_id'] if hasattr(vals, 'project_id') else line.project_id.id
-            task = vals['task'] if hasattr(vals, 'task') else: line.task.id
+            task = vals['task'] if hasattr(vals, 'task') else line.task.id
             
             workVals = {
                 'name': description,
