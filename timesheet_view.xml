@@ -9,11 +9,11 @@
     		<field name="arch" type="xml">
 				<data>
 					<xpath expr="//field[@name='timesheet_ids']/form/field[@name='account_id']" position="after">
-						<field name="task" />
+						<field name="task_id" />
 					</xpath>
 					
 					<xpath expr="//field[@name='timesheet_ids']/tree/field[@name='account_id']" position="after">
-						<field name="task"/>
+						<field name="task_id"/>
 					</xpath>
 				</data>
     		</field>
