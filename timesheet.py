@@ -1,6 +1,6 @@
 from osv import fields, osv
 
-
+'''
 class timesheet_task(osv.osv):
     _name='hr_timesheet_sheet.sheet'
     _inherit='hr_timesheet_sheet.sheet'
@@ -15,8 +15,8 @@ class timesheet_task(osv.osv):
     }
 
 timesheet_task()
-
-
+'''
+'''
 class analytic_line(osv.osv):
     _name="account.analytic.line"
     _inherit="account.analytic.line"
@@ -26,8 +26,8 @@ class analytic_line(osv.osv):
     }
     
 analytic_line()
-
 '''
+
 class analytic_timesheet_task(osv.osv):
     _name="hr.analytic.timesheet"
     _inherit="hr.analytic.timesheet"
@@ -40,8 +40,7 @@ class analytic_timesheet_task(osv.osv):
         return res
         
     _columns={
-        'workcenter_id': fields.related('line_id', 'workcenter', type='many2one', relation="project.task", string="Task"),
+        'task': fields.many2one('project.task', 'Project Task'),
     }
     
 analytic_timesheet_task()
-'''
