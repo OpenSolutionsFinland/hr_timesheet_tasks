@@ -39,18 +39,18 @@ class analytic_timesheet_task(osv.osv):
                 'date': date,
                 'hours': unit_amount,
             }
-        
+            
+            if currentWorkLineID == 0:
+                currentWorkLineID = taskWorkObj.create(cr, uid, workVals, context)
             # if project or task has changed remove old work from previous task
-            if hasattr(vals, 'project_id') or hasattr(vals, 'task'):
+            elif hasattr(vals, 'project_id') or hasattr(vals, 'task'):
                 logger.log(logging.INFO, "project or task changed")
                 # remove old task work
-                if currentWorkLineID != 0:
-                    taskWorkObj.unlink(cr, uid, currentWorkLineID, context)
+                taskWorkObj.unlink(cr, uid, currentWorkLineID, context)
             
                 currentWorkLineID = taskWorkObj.create(cr, uid, workVals, context)
             else:
                 # write to old task work
-
                 taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
        # except e:
     #        logger.log(logging.ERROR, e)
