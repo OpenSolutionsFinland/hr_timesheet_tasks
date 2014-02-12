@@ -38,6 +38,7 @@ class analytic_timesheet_task(osv.osv):
                 'task_id': task,
                 'date': date,
                 'hours': unit_amount,
+                'user_id': uid,
             }
             
             if currentWorkLineID == 0:
