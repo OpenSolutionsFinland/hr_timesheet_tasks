@@ -24,7 +24,7 @@ class analytic_timesheet_task(osv.osv):
         if line.project_id and line.task:
             taskObj = self.pool.get('project.task')
             task = taskObj.browse(cr, uid, line.task.id, context)
-            taskWorkObj = self.pool.get('project.task')
+            taskWorkObj = self.pool.get('project.task.work')
             
             description =  vals['name'] if hasattr(vals, 'name') else line.name
             date = vals['date'] if hasattr(vals, 'date') else line.date
