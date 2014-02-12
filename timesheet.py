@@ -11,7 +11,7 @@ class timesheet_task(osv.osv):
         return res
         
     _columns={
-        'task': fields.many2one('project.task', 'Project Task')#fields.related('line_id', 'workcenter', type='many2one', relation="project.task", string="Task"),
+        'task_id': fields.many2one('project.task', 'Project Task')#fields.related('line_id', 'workcenter', type='many2one', relation="project.task", string="Task"),
     }
 
 timesheet_task()

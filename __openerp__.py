@@ -27,7 +27,7 @@
     OpenERP module for adding hours to project tasks from timesheets
     """,
     "website" : "http://www.opensolutions.fi",
-    "depends" : ["base","product","sale", "mrp"],
+    "depends" : ["base","hr_timesheet_sheet"],
     "category" : "Generic Modules",
     "init_xml" : [],
     "demo_xml" : [],
