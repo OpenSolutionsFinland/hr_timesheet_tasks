@@ -9,10 +9,19 @@ class analytic_timesheet_task(osv.osv):
     _name="hr.analytic.timesheet"
     _inherit="hr.analytic.timesheet"
     
-    
+    def delete(self, cr, uid, ids, vals, context=None):
+        logger.log(logging.INFO, "deleting task work")
+        res = super(analytic_timesheet_task, self).write(cr, uid, ids, vals, context=context)
+        return res
+        
+    def create(self, cr, uid, ids, vals, context=None):
+        logger.log(logging.INFO, "creating task work")
+        res = super(analytic_timesheet_task, self).write(cr, uid, ids, vals, context=context)
+        return res
+        
     def write(self, cr, uid, ids, vals, context=None):
         #Your code goes here
-        logger.log(logging.INFO, "saving task work")
+        logger.log(logging.INFO, "writing task work")
         print str(ids)
         print str(vals)
         currentWorkLineID = 0
