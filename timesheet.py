@@ -22,7 +22,7 @@ class analytic_timesheet_task(osv.osv):
         
     def create(self, cr, uid, vals, context=None):
         logger.log(logging.INFO, "creating task work")
-
+        print str(vals)
         # Create task work
         if hasattr(vals, 'project_id') and hasattr(vals, 'task'):
             description =  vals['name']
