@@ -9,14 +9,14 @@ class analytic_timesheet_task(osv.osv):
     _name="hr.analytic.timesheet"
     _inherit="hr.analytic.timesheet"
     
-    def delete(self, cr, uid, ids, vals, context=None):
+    def unlink(self, cr, uid, ids, vals, context=None):
         logger.log(logging.INFO, "deleting task work")
-        res = super(analytic_timesheet_task, self).write(cr, uid, ids, vals, context=context)
+        res = super(analytic_timesheet_task, self).unlink(cr, uid, ids, vals, context=context)
         return res
         
     def create(self, cr, uid, ids, vals, context=None):
         logger.log(logging.INFO, "creating task work")
-        res = super(analytic_timesheet_task, self).write(cr, uid, ids, vals, context=context)
+        res = super(analytic_timesheet_task, self).create(cr, uid, ids, vals, context=context)
         return res
         
     def write(self, cr, uid, ids, vals, context=None):
