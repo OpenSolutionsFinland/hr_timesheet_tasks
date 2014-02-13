@@ -24,7 +24,7 @@ class analytic_timesheet_task(osv.osv):
         logger.log(logging.INFO, "creating task work")
 
         # Create task work
-        if hasattr(vals, 'project_id') and hasattr(vals, 'task')
+        if hasattr(vals, 'project_id') and hasattr(vals, 'task'):
             description =  vals['name']
             date = vals['date']
             unit_amount = vals['unit_amount']
