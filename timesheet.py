@@ -14,7 +14,7 @@ class analytic_timesheet_task(osv.osv):
         logger.log(logging.INFO, "deleting task work")
         lineObj = self.pool.get('hr.analytic.timesheet')
         line = lineObj.browse(cr, uid, ids, context)[0]
-        if line.task_work_line_id != 0:
+        if hasattr(line, 'task_work_line_id') and line.task_work_line_id != 0:
             print "current task " + str(line.task_work_line_id)
             taskWorkObj = self.pool.get('project.task.work')
             taskWorkLines =  taskWorkObj.search(cr, uid, [('id', '=', line.task_work_line_id)], context=context)
@@ -85,16 +85,10 @@ class analytic_timesheet_task(osv.osv):
         if project or task:
             logger.log(logging.INFO, "project or task changed")
             # remove old task work and create new one
-            taskWorkObj.unlink(cr, uid, currentWorkLineID, context)
-            currentWorkLineID = taskWorkObj.create(cr, uid, workVals, context)
-            vals['task_work_line_id'] = currentWorkLineID
-        elif currentWorkLineID != 0:
-            # write to old task work
-            taskWorkLines = taskWorkObj.search(cr, uid, [('id', '=', currentWorkLineID)], context=context)
-            print 'task work lines found ' + str(taskWorkLines)
-            if len(taskWorkLines) > 0:
-                print 'updating task work'
-                #taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
+            if currentWorkLineID != 0:
+                taskWorkObj.unlink(cr, uid, currentWorkLineID, context)
+                currentWorkLineID = taskWorkObj.create(cr, uid, workVals, context)
+                vals['task_work_line_id'] = currentWorkLineID
         
         res = super(analytic_timesheet_task, self).write(cr, uid, ids, vals, context=context)
         return res
