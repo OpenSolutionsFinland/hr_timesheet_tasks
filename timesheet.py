@@ -93,7 +93,8 @@ class analytic_timesheet_task(osv.osv):
             taskWorkLines = taskWorkObj.search(cr, uid, [('id', '=', currentWorkLineID)], context=context)
             print 'task work lines found ' + str(taskWorkLines)
             if len(taskWorkLines) > 0:
-                taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
+                print 'updating task work'
+                #taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
         
         res = super(analytic_timesheet_task, self).write(cr, uid, ids, vals, context=context)
         return res
