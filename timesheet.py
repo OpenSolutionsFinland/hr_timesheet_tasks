@@ -33,7 +33,8 @@ class analytic_timesheet_task(osv.osv):
             unit_amount = vals['unit_amount']
             project = vals['project_id'] or ''
             task = vals['task'] or ''
-    
+            taskWorkObj = self.pool.get('project.task.work')
+            
             workVals = {
                 'name': description,
                 'project_id': project,
