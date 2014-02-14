@@ -26,7 +26,7 @@ class analytic_timesheet_task(osv.osv):
         # Create task work
         #print vals['project_id']
         #print vals['task']
-        if vals['project_id'] or vals['task']:
+        if 'project_id' or 'task' in vals:
             logger.log(logging.INFO, "creating new work line for task")
             description =  vals['name']
             date = vals['date']
