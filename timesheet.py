@@ -58,12 +58,13 @@ class analytic_timesheet_task(osv.osv):
         lineObj = self.pool.get('hr.analytic.timesheet')
         line = lineObj.browse(cr, uid, ids, context)[0]
         currentWorkLineID = line.task_work_line_id
+        taskWorkObj = self.pool.get('project.task.work')
         
-        description =  vals['name'] if hasattr(vals, 'name') else line.name
-        date = vals['date'] if hasattr(vals, 'date') else line.date
-        unit_amount = vals['unit_amount'] if hasattr(vals, 'unit_amount') else line.unit_amount
-        project = vals['project_id'] if hasattr(vals, 'project_id') else None
-        task = vals['task'] if hasattr(vals, 'task') else None
+        description =  vals.get('name') or line.name
+        date = vals.get('date') or line.date
+        unit_amount = vals.get('unit_amount') or else line.unit_amount
+        project = vals.get('project_id') or False
+        task = vals.get('name') or False
     
         workVals = {
             'name': description,
@@ -74,17 +75,13 @@ class analytic_timesheet_task(osv.osv):
             'user_id': uid,
         }
         
-        if line.project_id and line.task:
-            taskObj = self.pool.get('project.task')
-            task = taskObj.browse(cr, uid, line.task.id, context)
-            taskWorkObj = self.pool.get('project.task.work')
-            
         # if project or task has changed remove old work from previous task
-        elif hasattr(vals, 'project_id') or hasattr(vals, 'task'):
+        if project or task:
             logger.log(logging.INFO, "project or task changed")
-            # remove old task work
+            # remove old task work and create new one
             taskWorkObj.unlink(cr, uid, currentWorkLineID, context)
             currentWorkLineID = taskWorkObj.create(cr, uid, workVals, context)
+            vals['task_work_line_id'] = currentWorkLineID
         else:
             # write to old task work
             taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
