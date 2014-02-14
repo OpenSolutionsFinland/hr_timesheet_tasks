@@ -18,6 +18,7 @@ class analytic_timesheet_task(osv.osv):
             print "current task " + str(line.task_work_line_id)
             taskWorkObj = self.pool.get('project.task.work')
             taskWorkLines =  taskWorkObj.search(cr, uid, [('id', '=', line.task_work_line_id)], context)
+            print str(taskWorkLines)
             # Delete work from task too
             if len(taskWorkLines) > 0:
                 taskWorkObj.unlink(cr, uid, taskWorkLines, context)
