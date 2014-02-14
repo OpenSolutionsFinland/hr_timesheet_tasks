@@ -24,15 +24,15 @@ class analytic_timesheet_task(osv.osv):
         logger.log(logging.INFO, "creating task work")
         print str(vals)
         # Create task work
-        print vals['project_id']
-        print vals['task']
-        if hasattr(vals, 'project_id') and hasattr(vals, 'task'):
+        #print vals['project_id']
+        #print vals['task']
+        if vals['project_id'] or vals['task']:
             logger.log(logging.INFO, "creating new work line for task")
             description =  vals['name']
             date = vals['date']
             unit_amount = vals['unit_amount']
-            project = vals['project_id']
-            task = vals['task']
+            project = vals['project_id'] or ''
+            task = vals['task'] or ''
     
             workVals = {
                 'name': description,
