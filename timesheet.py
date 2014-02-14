@@ -24,15 +24,15 @@ class analytic_timesheet_task(osv.osv):
         logger.log(logging.INFO, "creating task work")
         print str(vals)
         # Create task work
+        project = vals.get('project_id') or False
+        task = vals.get('task') or False
         #print vals['project_id']
         #print vals['task']
-        if 'project_id' or 'task' in vals:
+        if project or task:
             logger.log(logging.INFO, "creating new work line for task")
             description =  vals['name']
             date = vals['date']
             unit_amount = vals['unit_amount']
-            project = vals['project_id'] or ''
-            task = vals['task'] or ''
             taskWorkObj = self.pool.get('project.task.work')
             
             workVals = {
