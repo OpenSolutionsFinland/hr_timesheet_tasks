@@ -26,7 +26,7 @@ class analytic_timesheet_task(osv.osv):
         # Create task work
         project = vals.get('project_id') or False
         task = vals.get('task') or False
-        #print vals['project_id']
+        print vals['unit_amount']
         #print vals['task']
         if project or task:
             logger.log(logging.INFO, "creating new work line for task")
@@ -65,7 +65,7 @@ class analytic_timesheet_task(osv.osv):
         unit_amount = vals.get('unit_amount') or line.unit_amount
         project = vals.get('project_id') or False
         task = vals.get('name') or False
-    
+        
         workVals = {
             'name': description,
             'project_id': project,
