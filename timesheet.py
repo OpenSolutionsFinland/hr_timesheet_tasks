@@ -62,7 +62,7 @@ class analytic_timesheet_task(osv.osv):
         
         description =  vals.get('name') or line.name
         date = vals.get('date') or line.date
-        unit_amount = vals.get('unit_amount') or else line.unit_amount
+        unit_amount = vals.get('unit_amount') or line.unit_amount
         project = vals.get('project_id') or False
         task = vals.get('name') or False
     
