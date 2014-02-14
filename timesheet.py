@@ -15,8 +15,12 @@ class analytic_timesheet_task(osv.osv):
         lineObj = self.pool.get('hr.analytic.timesheet')
         line = lineObj.browse(cr, uid, ids, context)[0]
         if line.task_work_line_id != 0:
+            taskWorkObj = self.pool.get('project.task.work')
+            taskWorkLines =  taskWorkObj.search(cr, uid, [('id', '=', line.task_work_line_id)], context)
             # Delete work from task too
-            self.pool.get('project.task.work').unlink(cr, uid, line.task_work_line_id, context)
+            if len(taskWorkLines) > 0:
+                taskWorkObj.unlink(cr, uid, taskWorkLines, context)
+                
         res = super(analytic_timesheet_task, self).unlink(cr, uid, ids, context=context)
         return res
         
