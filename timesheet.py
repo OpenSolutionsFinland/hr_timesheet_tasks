@@ -91,6 +91,7 @@ class analytic_timesheet_task(osv.osv):
         elif currentWorkLineID != 0:
             # write to old task work
             taskWorkLines = taskWorkObj.search(cr, uid, [('id', '=', currentWorkLineID)], context=context)
+            print 'task work lines found ' + str(taskWorkLines)
             if len(taskWorkLines) > 0:
                 taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
         
