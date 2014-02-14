@@ -82,7 +82,7 @@ class analytic_timesheet_task(osv.osv):
             taskWorkObj.unlink(cr, uid, currentWorkLineID, context)
             currentWorkLineID = taskWorkObj.create(cr, uid, workVals, context)
             vals['task_work_line_id'] = currentWorkLineID
-        else:
+        elif currentWorkLineID != 0:
             # write to old task work
             taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
         
