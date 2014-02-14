@@ -24,6 +24,8 @@ class analytic_timesheet_task(osv.osv):
         logger.log(logging.INFO, "creating task work")
         print str(vals)
         # Create task work
+        print vals['project_id']
+        print vals['task']
         if hasattr(vals, 'project_id') and hasattr(vals, 'task'):
             logger.log(logging.INFO, "creating new work line for task")
             description =  vals['name']
