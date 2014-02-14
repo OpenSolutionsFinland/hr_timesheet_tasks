@@ -17,7 +17,7 @@ class analytic_timesheet_task(osv.osv):
         if line.task_work_line_id != 0:
             print "current task " + str(line.task_work_line_id)
             taskWorkObj = self.pool.get('project.task.work')
-            taskWorkLines =  taskWorkObj.search(cr, uid, [('id', '=', line.task_work_line_id)], context)
+            taskWorkLines =  taskWorkObj.search(cr, uid, [('id', '=', line.task_work_line_id)], context=context)
             print str(taskWorkLines)
             # Delete work from task too
             if len(taskWorkLines) > 0:
@@ -90,7 +90,7 @@ class analytic_timesheet_task(osv.osv):
             vals['task_work_line_id'] = currentWorkLineID
         elif currentWorkLineID != 0:
             # write to old task work
-            taskWorkLines = taskWorkObj.search(cr, uid, [('id', '=', currentWorkLineID)], context)
+            taskWorkLines = taskWorkObj.search(cr, uid, [('id', '=', currentWorkLineID)], context=context)
             if len(taskWorkLines) > 0:
                 taskWorkObj.write(cr, uid, currentWorkLineID, workVals, context)
         
